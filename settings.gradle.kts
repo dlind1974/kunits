@@ -9,4 +9,4 @@
  */
 
 rootProject.name = "kunits"
-include("lib")
+include("libkunits")
