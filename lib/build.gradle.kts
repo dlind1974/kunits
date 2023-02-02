@@ -7,12 +7,19 @@
  * This project uses @Incubating APIs which are subject to change.
  */
 
+group = "com.github.dlind1974"
+
+// TODO: The version should be fetched from git tag
+version = "0.1.0"
+
+
 plugins {
     // Apply the org.jetbrains.kotlin.jvm Plugin to add support for Kotlin.
     id("org.jetbrains.kotlin.jvm") version "1.7.10"
 
     // Apply the java-library plugin for API and implementation separation.
     `java-library`
+    `maven-publish`
 }
 
 repositories {
@@ -38,4 +45,20 @@ testing {
             }
         }
     }
+}
+
+publishing {
+    publications {
+        create<MavenPublication>("kunitsLibrary") {
+            from(components["java"])
+        }
+    }
+    /*
+    repositories {
+        maven {
+            name = "myRepo"
+            url = uri(layout.buildDirectory.dir("repo"))
+        }
+    }
+    */
 }
