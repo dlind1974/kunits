@@ -21,11 +21,8 @@ repositories {
 }
 
 dependencies {
-    // This dependency is exported to consumers, that is to say found on their compile classpath.
-    api("org.apache.commons:commons-math3:3.6.1")
-
-    // This dependency is used internally, and not exposed to consumers on their own compile classpath.
-    implementation("com.google.guava:guava:31.1-jre")
+    api("com.fasterxml.jackson.module:jackson-module-kotlin:2.14.0")
+    testImplementation ("com.google.truth:truth:1.1.3")
 }
 
 testing {
