@@ -7,20 +7,22 @@
  * This project uses @Incubating APIs which are subject to change.
  */
 
-group = "com.github.dlind1974"
-
-// TODO: The version should be fetched from git tag
-version = "0.1.0"
-
-
 plugins {
     // Apply the org.jetbrains.kotlin.jvm Plugin to add support for Kotlin.
     id("org.jetbrains.kotlin.jvm") version "1.7.10"
+
+    // Get library version from git tag
+    id("com.palantir.git-version") version "0.15.0"
 
     // Apply the java-library plugin for API and implementation separation.
     `java-library`
     `maven-publish`
 }
+
+group = "com.github.dlind1974"
+
+val gitVersion: groovy.lang.Closure<String> by extra
+version = gitVersion()
 
 repositories {
     // Use Maven Central for resolving dependencies.
