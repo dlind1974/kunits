@@ -1,7 +1,7 @@
 # kunits
 Library of measurement units in Kotlin.
 The library contains classes to handle measurements of Distance, Area and Speed with corresponding units of measurement.
-Serialization and deserialization of measurements is supported using [jackson](https://github.com/FasterXML/jackson), see json [unit tests](./libkunits/src/test/kotlin/com/github/dlind1974/kunits/json/§) in this repo for more details on how to serialize7deserialize.
+Serialization and deserialization of measurements is supported using [jackson](https://github.com/FasterXML/jackson), see json [unit tests](./libkunits/src/test/kotlin/com/github/dlind1974/kunits/json/§) in this repo for more details on how to serialize/deserialize.
 
 For now only support of a limited number of si-units.
 
