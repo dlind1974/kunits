@@ -1,6 +1,6 @@
 package com.github.dlind1974.kunits
 
-class Speed(amount : Double, unit: SpeedUnit) : Quantity<SpeedUnit>(amount, unit)
+class Speed(amount: Double, unit: SpeedUnit) : Quantity<SpeedUnit>(amount, unit)
 
 val Speed.meterPerSecond get() = this.to(SpeedUnit.MeterPerSecond)
 val Speed.metersPerSecond get() = this.meterPerSecond

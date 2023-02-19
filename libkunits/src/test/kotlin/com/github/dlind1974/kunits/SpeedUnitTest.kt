@@ -7,6 +7,12 @@ import kotlin.test.assertFailsWith
 class SpeedUnitTest {
 
     @Test
+    fun overloadedUnitFactoriesCreateEqualUnits() {
+        assertEquals(SpeedUnit.MeterPerSecond, SpeedUnit.mps)
+        assertEquals(SpeedUnit.KilometerPerHour, SpeedUnit.kmph)
+    }
+
+    @Test
     fun fromString_WhenStringContainsValidUnit_SpeedUnitIsReturned() {
         assertEquals(SpeedUnit.fromString("m/s"), SpeedUnit.MeterPerSecond)
         assertEquals(SpeedUnit.fromString("km/h"), SpeedUnit.KilometerPerHour)

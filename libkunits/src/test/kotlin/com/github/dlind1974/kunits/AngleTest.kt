@@ -10,11 +10,13 @@ class AngleTest {
         verify(12.degree, 12.0, AngleUnit.Degree)
         verify((-10).degree, (-10.0), AngleUnit.Degree)
         verify(0.degree, 0.0, AngleUnit.Degree)
+        verify(12.degrees, 12.0, AngleUnit.Degrees)
     }
 
     @Test
     fun degreeAndDegreesAreEqual() {
         assertEquals(12.degrees, 12.degree)
+        assertEquals(12.degrees.degree, 12.degree)
     }
 
     @Test

@@ -57,7 +57,7 @@ dependencies {
 * A basic understanding of kotlin libraries<br>
 https://docs.gradle.org/current/samples/sample_building_kotlin_libraries.html
 
-* Gradle version compativility<br>
+* Gradle version compatibility<br>
 https://docs.gradle.org/current/userguide/compatibility.html<br>
 _Note that gradle 7.5 or newer is required for open-jdk 18.
 A specific gradle version is easy to install using [sdkman](https://sdkman.io/)._
