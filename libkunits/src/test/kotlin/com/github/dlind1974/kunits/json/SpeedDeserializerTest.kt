@@ -14,35 +14,35 @@ import kotlin.test.BeforeTest
 class SpeedDeserializerTest {
 
     private lateinit var module: SimpleModule
-    private lateinit var mapper: ObjectMapper
+    private lateinit var objectMapper: ObjectMapper
 
     @BeforeTest
     fun setup() {
         module = SimpleModule("SpeedDeserializer", Version(1, 0, 0, null, null, null))
-        mapper = ObjectMapper()
+        objectMapper = ObjectMapper()
         module.addDeserializer(Speed::class.java, SpeedDeserializer(Speed::class.java))
-        mapper.registerModule(module)
+        objectMapper.registerModule(module)
 
     }
 
     @Test
     fun whenJsonContainsCorrectFialds_SpeedUnitIsReturned() {
         val speedJson = "{\"amount\":12.7,\"unit\":\"m/s\"}"
-        val speed: Speed = mapper.readValue(speedJson, Speed::class.java)
+        val speed: Speed = objectMapper.readValue(speedJson, Speed::class.java)
         assertEquals(speed, 12.7.meterPerSecond)
     }
 
     @Test
     fun whenJsonIsMissingAmount_AmountDefaultsToZero() {
         val speedJson = "{\"unit\":\"m/s\"}"
-        val speed: Speed = mapper.readValue(speedJson, Speed::class.java)
+        val speed: Speed = objectMapper.readValue(speedJson, Speed::class.java)
         assertEquals(speed, 0.meterPerSecond)
     }
 
     @Test
     fun whenJsonIsUnit_UnitDefaultsToMetersPerSecond() {
         val speedJson = "{\"amount\":12.7}"
-        val speed: Speed = mapper.readValue(speedJson, Speed::class.java)
+        val speed: Speed = objectMapper.readValue(speedJson, Speed::class.java)
         assertEquals(speed, 12.7.meterPerSecond)
     }
 
@@ -50,7 +50,7 @@ class SpeedDeserializerTest {
     fun whenJsonContainsNotSupportedUnit_ExceptionIsThrow() {
         val speedJson = "{\"amount\":12.7,\"unit\":\"not_supported_unit\"}"
         assertFailsWith<UnitException>("Conversion to SpeedUnit is missing for string: not_supported_unit") {
-            mapper.readValue(speedJson, Speed::class.java)
+            objectMapper.readValue(speedJson, Speed::class.java)
         }
     }
 }

@@ -19,9 +19,9 @@ class DistanceSerializerTest {
         module.addSerializer(Distance::class.java, speedSerializer)
         objectMapper.registerModule(module)
 
-        val speed = 12.7.meter
-        val speedJson: String = objectMapper.writeValueAsString(speed)
+        val distance = 12.7.meter
+        val distanceJson: String = objectMapper.writeValueAsString(distance)
         val expectedDistanceJson = "{\"amount\":12.7,\"unit\":\"m\"}"
-        assertEquals(speedJson, expectedDistanceJson)
+        assertEquals(distanceJson, expectedDistanceJson)
     }
 }

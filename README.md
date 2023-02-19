@@ -1,5 +1,47 @@
 # kunits
-Measurement units in Kotlin
+Library of measurement units in Kotlin.
+The library contains classes to handle measurements of Distance, Area and Speed with corresponding units of measurement.
+Serialization and deserialization of measurements is supported using [jackson](https://github.com/FasterXML/jackson), see json [unit tests](./libkunits/src/test/kotlin/com/github/dlind1974/kunits/json/§) in this repo for more details on how to serialize7deserialize.
+
+For now only support of a limited number of si-units.
+
+## Examples of usage
+
+Creating a measurement from a number
+```kotlin
+val distance = 12.5.kilometers
+```
+
+Conversion between units
+```kotlin
+val distance = 12.5.kilometers
+val distanceInMeters = distance.meters
+```
+
+Calculation
+```kotlin
+val d1 = 12.5.kilometers
+val d2 = 2.meters
+val d3 = d1 + d2
+println(d3) // => 12.502km
+```
+
+Serializing
+```kotlin
+val speed = 12.7.meterPerSecond
+val speedJson: String = objectMapper.writeValueAsString(speed)
+val expectedSpeedJson = "{\"amount\":12.7,\"unit\":\"m/s\"}"
+assertEquals(speedJson, expectedSpeedJson)
+```
+
+Deserializing
+```kotlin
+val speedJson = "{\"amount\":12.7,\"unit\":\"m/s\"}"
+val speed: Speed = objectMapper.readValue(speedJson, Speed::class.java)
+assertEquals(speed, 12.7.meterPerSecond)
+```
+
+See json [unit tests](./libkunits/src/test/kotlin/com/github/dlind1974/kunits/json/§) on how to setup the object mapper.
 
 
 # Useful gradle commands

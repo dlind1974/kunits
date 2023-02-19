@@ -14,35 +14,35 @@ import kotlin.test.BeforeTest
 class AreaDeserializerTest {
 
     private lateinit var module: SimpleModule
-    private lateinit var mapper: ObjectMapper
+    private lateinit var objectMapper: ObjectMapper
 
     @BeforeTest
     fun setup() {
         module = SimpleModule("AreaDeserializer", Version(1, 0, 0, null, null, null))
-        mapper = ObjectMapper()
+        objectMapper = ObjectMapper()
         module.addDeserializer(Area::class.java, AreaDeserializer(Area::class.java))
-        mapper.registerModule(module)
+        objectMapper.registerModule(module)
 
     }
 
     @Test
     fun whenJsonContainsCorrectFialds_AreaUnitIsReturned() {
         val areaJson = "{\"amount\":12.7,\"unit\":\"m2\"}"
-        val area: Area = mapper.readValue(areaJson, Area::class.java)
+        val area: Area = objectMapper.readValue(areaJson, Area::class.java)
         assertEquals(area, 12.7.m2)
     }
 
     @Test
     fun whenJsonIsMissingAmount_AmountDefaultsToZero() {
         val areaJson = "{\"unit\":\"m2\"}"
-        val area: Area = mapper.readValue(areaJson, Area::class.java)
+        val area: Area = objectMapper.readValue(areaJson, Area::class.java)
         assertEquals(area, 0.m2)
     }
 
     @Test
     fun whenJsonIsUnit_UnitDefaultsToSquareMeters() {
         val areaJson = "{\"amount\":12.7}"
-        val area: Area = mapper.readValue(areaJson, Area::class.java)
+        val area: Area = objectMapper.readValue(areaJson, Area::class.java)
         assertEquals(area, 12.7.m2)
     }
 
@@ -50,7 +50,7 @@ class AreaDeserializerTest {
     fun whenJsonContainsNotSupportedUnit_ExceptionIsThrow() {
         val areaJson = "{\"amount\":12.7,\"unit\":\"not_supported_unit\"}"
         assertFailsWith<UnitException>("Conversion to AreaUnit is missing for string: not_supported_unit") {
-            mapper.readValue(areaJson, Area::class.java)
+            objectMapper.readValue(areaJson, Area::class.java)
         }
     }
 }

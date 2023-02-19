@@ -48,4 +48,12 @@ class SpeedTest {
         quantity = Quantity(-27.8, SpeedUnit.KilometerPerHour)
         assertEquals(quantity.toString(1U), "-27.8km/h")
     }
+
+    @Test
+    fun qwerty(){
+        val d1 = 12.5.kilometers
+        val d2 = 2.meters
+        val d3 = d1 + d2
+        println(d3) // => 12.502km
+    }
 }

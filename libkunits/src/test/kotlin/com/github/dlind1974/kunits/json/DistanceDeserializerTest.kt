@@ -14,35 +14,35 @@ import kotlin.test.BeforeTest
 class DistanceDeserializerTest {
 
     private lateinit var module: SimpleModule
-    private lateinit var mapper: ObjectMapper
+    private lateinit var objectMapper: ObjectMapper
 
     @BeforeTest
     fun setup() {
         module = SimpleModule("DistanceDeserializer", Version(1, 0, 0, null, null, null))
-        mapper = ObjectMapper()
+        objectMapper = ObjectMapper()
         module.addDeserializer(Distance::class.java, DistanceDeserializer(Distance::class.java))
-        mapper.registerModule(module)
+        objectMapper.registerModule(module)
 
     }
 
     @Test
     fun whenJsonContainsCorrectFialds_DistanceUnitIsReturned() {
         val distanceJson = "{\"amount\":12.7,\"unit\":\"m\"}"
-        val distance: Distance = mapper.readValue(distanceJson, Distance::class.java)
+        val distance: Distance = objectMapper.readValue(distanceJson, Distance::class.java)
         assertEquals(distance, 12.7.meter)
     }
 
     @Test
     fun whenJsonIsMissingAmount_AmountDefaultsToZero() {
         val distanceJson = "{\"unit\":\"m\"}"
-        val distance: Distance = mapper.readValue(distanceJson, Distance::class.java)
+        val distance: Distance = objectMapper.readValue(distanceJson, Distance::class.java)
         assertEquals(distance, 0.meter)
     }
 
     @Test
     fun whenJsonIsUnit_UnitDefaultsToMeter() {
         val distanceJson = "{\"amount\":12.7}"
-        val distance: Distance = mapper.readValue(distanceJson, Distance::class.java)
+        val distance: Distance = objectMapper.readValue(distanceJson, Distance::class.java)
         assertEquals(distance, 12.7.meter)
     }
 
@@ -50,7 +50,7 @@ class DistanceDeserializerTest {
     fun whenJsonContainsNotSupportedUnit_ExceptionIsThrow() {
         val distanceJson = "{\"amount\":12.7,\"unit\":\"not_supported_unit\"}"
         assertFailsWith<UnitException>("Conversion to DistanceUnit is missing for string: not_supported_unit") {
-            mapper.readValue(distanceJson, Distance::class.java)
+            objectMapper.readValue(distanceJson, Distance::class.java)
         }
     }
 }
