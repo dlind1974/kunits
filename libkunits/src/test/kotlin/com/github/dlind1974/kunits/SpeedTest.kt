@@ -42,10 +42,10 @@ class SpeedTest {
 
     @Test
     fun toStringShowsCorrectUnit() {
-        var quantity = Quantity(1000.0, SpeedUnit.MeterPerSecond)
+        var quantity = Speed(1000.0, SpeedUnit.MeterPerSecond)
         assertEquals(quantity.toString(1U), "1000.0m/s")
 
-        quantity = Quantity(-27.8, SpeedUnit.KilometerPerHour)
+        quantity = Speed(-27.8, SpeedUnit.KilometerPerHour)
         assertEquals(quantity.toString(1U), "-27.8km/h")
     }
 

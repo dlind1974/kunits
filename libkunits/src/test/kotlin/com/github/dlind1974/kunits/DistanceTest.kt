@@ -60,16 +60,16 @@ class DistanceTest {
 
     @Test
     fun toStringShowsCorrectUnit() {
-        var quantity = Quantity(1000.0, DistanceUnit.Kilometer)
+        var quantity = Distance(1000.0, DistanceUnit.Kilometer)
         assertEquals(quantity.toString(1U), "1000.0km")
 
-        quantity = Quantity(-1000.0, DistanceUnit.Meter)
+        quantity = Distance(-1000.0, DistanceUnit.Meter)
         assertEquals(quantity.toString(1U), "-1000.0m")
 
-        quantity = Quantity(1000.0, DistanceUnit.Centimeter)
+        quantity = Distance(1000.0, DistanceUnit.Centimeter)
         assertEquals(quantity.toString(1U), "1000.0cm")
 
-        quantity = Quantity(1000.0, DistanceUnit.Millimeter)
+        quantity = Distance(1000.0, DistanceUnit.Millimeter)
         assertEquals(quantity.toString(1U), "1000.0mm")
 
 

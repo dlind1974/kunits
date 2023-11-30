@@ -1,6 +1,13 @@
 package com.github.dlind1974.kunits
 
-class Speed(amount: Double, unit: SpeedUnit) : Quantity<SpeedUnit>(amount, unit)
+import kotlinx.serialization.Serializable
+
+@Serializable
+class Speed(override val amount: Double, override val unit: SpeedUnit) : Quantity<SpeedUnit>() {
+    override fun create(amount: Double, unit: SpeedUnit) : Quantity<SpeedUnit> {
+        return Speed(amount, unit)
+    }
+}
 
 val Speed.meterPerSecond get() = this.to(SpeedUnit.MeterPerSecond)
 val Speed.metersPerSecond get() = this.meterPerSecond

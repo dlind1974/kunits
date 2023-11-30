@@ -13,6 +13,8 @@ plugins {
     // Get library version from git tag
     id("com.palantir.git-version") version "0.15.0"
 
+    kotlin("plugin.serialization") version "1.9.21"
+
     // Apply the java-library plugin for API and implementation separation.
     `java-library`
     `maven-publish`
@@ -30,6 +32,7 @@ repositories {
 
 dependencies {
     api("com.fasterxml.jackson.module:jackson-module-kotlin:2.14.0")
+    api("org.jetbrains.kotlinx:kotlinx-serialization-json:1.6.2")
     testImplementation ("com.google.truth:truth:1.1.3")
 }
 

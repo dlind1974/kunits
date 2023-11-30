@@ -41,10 +41,10 @@ class AreaTest {
 
     @Test
     fun toStringShowsCorrectUnit() {
-        var quantity = Quantity(1000.0, AreaUnit.SquareMeter)
+        var quantity = Area(1000.0, AreaUnit.SquareMeter)
         assertEquals(quantity.toString(1U), "1000.0m2")
 
-        quantity = Quantity(-27.8, AreaUnit.SquareCentimeter)
+        quantity = Area(-27.8, AreaUnit.SquareCentimeter)
         assertEquals(quantity.toString(1U), "-27.8cm2")
     }
 }
