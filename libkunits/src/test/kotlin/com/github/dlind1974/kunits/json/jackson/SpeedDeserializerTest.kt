@@ -1,4 +1,4 @@
-package com.github.dlind1974.kunits.json
+package com.github.dlind1974.kunits.json.jackson
 
 import com.github.dlind1974.kunits.Speed
 import com.github.dlind1974.kunits.UnitException
@@ -40,7 +40,7 @@ class SpeedDeserializerTest {
     }
 
     @Test
-    fun whenJsonIsUnit_UnitDefaultsToMetersPerSecond() {
+    fun whenJsonIsMissingUnit_UnitDefaultsToMetersPerSecond() {
         val speedJson = "{\"amount\":12.7}"
         val speed: Speed = objectMapper.readValue(speedJson, Speed::class.java)
         assertEquals(speed, 12.7.meterPerSecond)

@@ -1,4 +1,4 @@
-package com.github.dlind1974.kunits.json
+package com.github.dlind1974.kunits.json.jackson
 
 import com.fasterxml.jackson.core.JsonGenerator
 import com.fasterxml.jackson.databind.SerializerProvider

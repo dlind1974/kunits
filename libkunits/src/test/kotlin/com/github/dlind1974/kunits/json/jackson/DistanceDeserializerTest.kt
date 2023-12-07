@@ -1,4 +1,4 @@
-package com.github.dlind1974.kunits.json
+package com.github.dlind1974.kunits.json.jackson
 
 import com.github.dlind1974.kunits.Distance
 import com.github.dlind1974.kunits.UnitException
