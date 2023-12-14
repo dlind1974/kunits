@@ -1,8 +1,6 @@
 package com.github.dlind1974.kunits
 
-import kotlinx.serialization.Serializable
 
-@Serializable
 abstract class Quantity<T : MeasureUnit>() : Comparable<Quantity<T>> {
 
     abstract val amount: Double

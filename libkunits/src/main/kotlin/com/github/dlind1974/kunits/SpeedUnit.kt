@@ -1,12 +1,9 @@
 package com.github.dlind1974.kunits
 
-import kotlinx.serialization.Serializable
-import kotlinx.serialization.Transient
 
 const val kmphToMpsRatio = 1000.0/(60.0 * 60.0)
 
-@Serializable
-class SpeedUnit(override val name: String, @Transient override val ratio: Double = 1.0) : MeasureUnit() {
+class SpeedUnit(override val name: String, override val ratio: Double = 1.0) : MeasureUnit() {
     companion object Factory {
         val MeterPerSecond = SpeedUnit("m/s", 1.0)
         val KilometerPerHour = SpeedUnit("km/h", kmphToMpsRatio)

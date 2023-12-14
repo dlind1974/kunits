@@ -1,8 +1,5 @@
 package com.github.dlind1974.kunits
 
-import kotlinx.serialization.Serializable
-
-@Serializable
 class Speed(override val amount: Double, override val unit: SpeedUnit) : Quantity<SpeedUnit>() {
     override fun create(amount: Double, unit: SpeedUnit) : Quantity<SpeedUnit> {
         return Speed(amount, unit)
