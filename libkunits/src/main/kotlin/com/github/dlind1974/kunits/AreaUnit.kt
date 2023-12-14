@@ -1,6 +1,6 @@
 package com.github.dlind1974.kunits
 
-class AreaUnit(override val name: String, override val ratio: Double) : MeasureUnit() {
+class AreaUnit(name: String, ratio: Double) : MeasureUnit(name, ratio) {
 
     companion object Factory {
         val SquareMeter = AreaUnit("m2", 1.0)

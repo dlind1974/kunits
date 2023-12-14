@@ -1,10 +1,6 @@
 package com.github.dlind1974.kunits
 
-class Distance(override val amount: Double, override val unit: DistanceUnit) : Quantity<DistanceUnit>() {
-    override fun create(amount: Double, unit: DistanceUnit): Quantity<DistanceUnit> {
-        return Distance(amount, unit)
-    }
-}
+class Distance(amount: Double, unit: DistanceUnit) : Quantity<DistanceUnit>(amount, unit)
 
 val Distance.kilometer get() = this.to(DistanceUnit.Kilometer)
 val Distance.kilometers get() = this.kilometer

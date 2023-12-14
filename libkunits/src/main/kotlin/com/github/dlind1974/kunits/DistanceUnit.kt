@@ -1,6 +1,6 @@
 package com.github.dlind1974.kunits
 
-class DistanceUnit(override val name: String, override val ratio: Double) : MeasureUnit() {
+class DistanceUnit(name: String, ratio: Double) : MeasureUnit(name, ratio) {
     companion object Factory {
         val Kilometer = DistanceUnit("km", 1000.0)
         val km = Kilometer

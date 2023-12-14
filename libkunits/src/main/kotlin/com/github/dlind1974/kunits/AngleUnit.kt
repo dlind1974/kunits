@@ -1,7 +1,6 @@
 package com.github.dlind1974.kunits
 
-
-class AngleUnit(override val name: String, override val ratio: Double) : MeasureUnit() {
+class AngleUnit(name: String, ratio: Double) : MeasureUnit(name, ratio) {
     companion object Factory {
         val Degree = AngleUnit("degree", 1.0)
 

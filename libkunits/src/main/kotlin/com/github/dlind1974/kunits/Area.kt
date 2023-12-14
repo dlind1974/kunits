@@ -1,10 +1,6 @@
 package com.github.dlind1974.kunits
 
-class Area(override val amount: Double, override val unit: AreaUnit) : Quantity<AreaUnit>() {
-    override fun create(amount: Double, unit: AreaUnit): Quantity<AreaUnit> {
-        return Area(amount, unit)
-    }
-}
+class Area(amount: Double, unit: AreaUnit) : Quantity<AreaUnit>(amount, unit)
 
 val Area.squareMeter get() = this.to(AreaUnit.SquareMeter)
 val Area.squareMeters get() = this.squareMeter

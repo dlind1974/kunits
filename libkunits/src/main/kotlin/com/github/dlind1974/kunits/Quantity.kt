@@ -1,28 +1,22 @@
 package com.github.dlind1974.kunits
 
-
-abstract class Quantity<T : MeasureUnit>() : Comparable<Quantity<T>> {
-
-    abstract val amount: Double
-    abstract val unit: T
-
-    abstract fun create(amount: Double, unit: T) : Quantity<T>
+open class Quantity<T : MeasureUnit>(val amount: Double, val unit: T) : Comparable<Quantity<T>> {
 
     fun to(unit: T): Quantity<T> {
         val baseUnit = this.unit.convertToBaseUnit(amount)
-        return create(unit.convertFromBaseUnit(baseUnit), unit)
+        return Quantity(unit.convertFromBaseUnit(baseUnit), unit)
     }
 
     operator fun plus(quantity: Quantity<T>): Quantity<T> {
         val converted = quantity.to(this.unit).amount
         val amount = this.amount + converted
-        return create(amount, this.unit)
+        return Quantity(amount, this.unit)
     }
 
     operator fun minus(quantity: Quantity<T>): Quantity<T> {
         val converted = quantity.to(this.unit).amount
         val amount = this.amount - converted
-        return create(amount, this.unit)
+        return Quantity(amount, this.unit)
     }
 
     override fun equals(other: Any?): Boolean {
