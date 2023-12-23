@@ -10,29 +10,29 @@ class DistanceSerializerTest {
     fun serialize_WhenDistanceUnit_JsonIsInSameUnit() {
         val distanceMeters = 12.7.meters
         val distanceMetersJson = distanceMeters.serializeToString()
-        val expectedDistanceMpsJson = "{\"amount\":12.7,\"unit\":\"m/s\"}"
+        val expectedDistanceMpsJson = "{\"amount\":12.7,\"unit\":\"m\"}"
         assertEquals(expectedDistanceMpsJson, distanceMetersJson)
 
         val distanceKilometers = 27.7.kilometer
         val distanceKilometersJson = distanceKilometers.serializeToString()
-        val expectedDistanceKphJson = "{\"amount\":27.7,\"unit\":\"km/h\"}"
+        val expectedDistanceKphJson = "{\"amount\":27.7,\"unit\":\"km\"}"
         assertEquals(expectedDistanceKphJson, distanceKilometersJson)
     }
 
     @Test
     fun deserialize_WhenJsonContinsCorrectFields_DistanceUnitIsReturned() {
-        val jsonMps = "{\"amount\":12.7,\"unit\":\"m/s\"}"
+        val jsonMps = "{\"amount\":12.7,\"unit\":\"m\"}"
         val distanceMeters: Distance =  jsonMps.deserializeToDistance()
         assertEquals(distanceMeters, 12.7.meters)
 
-        val jsonKph = "{\"amount\":27.5,\"unit\":\"km/h\"}"
+        val jsonKph = "{\"amount\":27.5,\"unit\":\"km\"}"
         val speed: Distance =  jsonKph.deserializeToDistance()
         assertEquals(speed, 27.5.kilometer)
     }
 
     @Test
     fun deserialize_WhenJsonIsMissingAmount_AmountDefaultsToZero() {
-        val json = "{\"unit\":\"m/s\"}"
+        val json = "{\"unit\":\"m\"}"
         val speed: Distance =  json.deserializeToDistance()
         assertEquals(speed, 0.meters)
     }
