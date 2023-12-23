@@ -9,40 +9,80 @@ For now only support of a limited number of si-units.
 
 Creating a measurement from a number
 ```kotlin
+import com.github.dlind1974.kunits.*
+
 val distance = 12.5.kilometers
 ```
 
 Conversion between units
 ```kotlin
+import com.github.dlind1974.kunits.*
+
 val distance = 12.5.kilometers
 val distanceInMeters = distance.meters
 ```
 
 Calculation
 ```kotlin
+import com.github.dlind1974.kunits.*
+
 val d1 = 12.5.kilometers
 val d2 = 2.meters
 val d3 = d1 + d2
 println(d3) // => 12.502km
 ```
 
-Serializing
+# Serialization
+
+## Using [kotlinx.serialization](https://github.com/Kotlin/kotlinx.serialization)
+
+See [kotlinx json unit tests](./libkunits/src/test/kotlin/com/github/dlind1974/kunits/json/kotlinx) for more details on usage.
+
+### Serializing
 ```kotlin
+import com.github.dlind1974.kunits.*
+import com.github.dlind1974.kunits.json.kotlinx.*
+
+val speed = 12.7.meterPerSecond
+val speedJson = speed.serializeToString()
+val expectedSpeeJson = "{\"amount\":12.7,\"unit\":\"m/s\"}"
+assertEquals(expectedSpeeJson, speedMpsJson)
+```
+
+### Deserializing
+```kotlin
+import com.github.dlind1974.kunits.*
+import com.github.dlind1974.kunits.json.kotlinx.*
+
+val json = "{\"amount\":12.7,\"unit\":\"m/s\"}"
+val speed: Speed =  json.deserializeToSpeed()
+assertEquals(speed, 12.7.meterPerSecond)
+```
+
+## Using [Jackson](https://github.com/FasterXML/jackson)
+
+See [jackson json unit tests](./libkunits/src/test/kotlin/com/github/dlind1974/kunits/json/jackson) on how to setup the object mapper and more details on usage.
+
+### Serializing
+```kotlin
+import com.github.dlind1974.kunits.*
+import com.github.dlind1974.kunits.json.jackson.*
+
 val speed = 12.7.meterPerSecond
 val speedJson: String = objectMapper.writeValueAsString(speed)
 val expectedSpeedJson = "{\"amount\":12.7,\"unit\":\"m/s\"}"
 assertEquals(speedJson, expectedSpeedJson)
 ```
 
-Deserializing
+### Deserializing
 ```kotlin
+import com.github.dlind1974.kunits.*
+import com.github.dlind1974.kunits.json.jackson.*
+
 val speedJson = "{\"amount\":12.7,\"unit\":\"m/s\"}"
 val speed: Speed = objectMapper.readValue(speedJson, Speed::class.java)
 assertEquals(speed, 12.7.meterPerSecond)
 ```
-
-See json [unit tests](./libkunits/src/test/kotlin/com/github/dlind1974/kunits/json/§) on how to setup the object mapper.
-
 
 # Useful gradle commands
 Run gradlew projects to get a list of available projects. This will lists the projects for, e.g. _libkunits_
