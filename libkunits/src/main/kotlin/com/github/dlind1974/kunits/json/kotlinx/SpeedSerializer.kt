@@ -2,12 +2,6 @@ package com.github.dlind1974.kunits.json.kotlinx
 
 import com.github.dlind1974.kunits.Speed
 import com.github.dlind1974.kunits.SpeedUnit
-import kotlinx.serialization.KSerializer
-import kotlinx.serialization.SerializationException
-import kotlinx.serialization.descriptors.SerialDescriptor
-import kotlinx.serialization.descriptors.buildClassSerialDescriptor
-import kotlinx.serialization.descriptors.element
-import kotlinx.serialization.encoding.*
 import kotlinx.serialization.json.Json
 
 object SpeedSerializer : QuantitySerializer<Speed>() {
