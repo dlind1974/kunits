@@ -3,11 +3,11 @@ package com.github.dlind1974.kunits
 import kotlin.test.Test
 import kotlin.test.assertEquals
 
-class TestUnitType(name: String, ratio: Double) : MeasureUnit(name, ratio) {
+class TestUnitType(name: String, unitConverter: UnitConverter) : MeasureUnit(name, unitConverter) {
     companion object Factory {
-        val Kilo = TestUnitType("Kilo", 1000.0)
-        val Base = TestUnitType("Base", 1.0)
-        val Centi = TestUnitType("Centi", 0.1)
+        val Kilo = TestUnitType("Kilo", RatioUnitConverter(1000.0))
+        val Base = TestUnitType("Base", RatioUnitConverter(1.0))
+        val Centi = TestUnitType("Centi", RatioUnitConverter(0.1))
     }
 
     override fun toString(): String = name

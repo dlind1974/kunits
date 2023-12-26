@@ -1,11 +1,11 @@
 package com.github.dlind1974.kunits
 
-class AreaUnit(name: String, ratio: Double) : MeasureUnit(name, ratio) {
+class AreaUnit(name: String, unitConverter: UnitConverter) : MeasureUnit(name, unitConverter) {
 
     companion object Factory {
-        val SquareMeter = AreaUnit("m2", 1.0)
+        val SquareMeter = AreaUnit("m2", RatioUnitConverter(1.0))
         val m2 = SquareMeter
-        val SquareCentimeter = AreaUnit("cm2", 0.0001)
+        val SquareCentimeter = AreaUnit("cm2", RatioUnitConverter(0.0001))
         val cm2 = SquareCentimeter
 
         fun fromString(str:String) : AreaUnit {
