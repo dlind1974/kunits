@@ -2,7 +2,6 @@ package com.github.dlind1974.kunits
 
 class UnitException(message: String) : Exception(message)
 
-
 interface UnitConverter {
     fun toBase(amount: Double) : Double
     fun fromBase(amount: Double) : Double
